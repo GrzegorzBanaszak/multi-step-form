@@ -12,7 +12,7 @@ const StepsList = () => {
           <div key={index} className="flex gap-3 lg:items-center">
             <div
               className={`text-white font-bold w-8 h-8 lg:w-10 lg:h-10 border-white border-[1px] flex items-center justify-center rounded-full ${
-                currentStep === index + 1 ? "bg-white text-black" : ""
+                currentStep === index + 1 ? "bg-white !text-black" : ""
               }`}
             >
               {index + 1}
