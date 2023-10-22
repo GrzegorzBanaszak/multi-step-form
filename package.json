@@ -2,6 +2,7 @@
   "name": "multi-step-form",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://GrzegorzBanaszak.github.io/multi-step-form",
   "type": "module",
   "scripts": {
     "dev": "vite",
