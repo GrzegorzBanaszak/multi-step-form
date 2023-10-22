@@ -1,37 +1,36 @@
-name: Deploy React Application
+name: Build and Deploy
 
-# Controls when the action will run. 
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches: ["main"]
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+permissions:
+  contents: write
+
 jobs:
-  build_test:
-    # The type of runner that the job will run on
+  build-deploy:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [18.x] # We will deploy with only one version of node  
+        node-version: [18.x]
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - name: npm ci, build
-        run: |
-          npm ci
-          npm run build --if-present    
-      - name: deploy to gh-pages
-        uses: peaceiris/actions-gh-pages@v3
+          cache: "npm"
+      - name: Install Packages
+        run: npm ci
+      - name: Build
+        run: npm run build
+      #- name: Test
+      #  run: npm test
+      - name: Deploy🚀
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          publish_dir: ./dist  
+          branch: gh-pages
+          folder: dist
