@@ -32,7 +32,7 @@ const Step2: FunctionComponent = () => {
       <StepDescription
         text={"You have the option of monthly or yearly billing"}
       />
-      <div className="flex flex-col gap-y-3">
+      <div className="flex flex-col gap-y-3 lg:flex-row lg:gap-y-0 lg:gap-x-4">
         {plans.map((plan, index) => {
           return (
             <PlanCard

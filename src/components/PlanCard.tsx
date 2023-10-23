@@ -8,7 +8,7 @@ export interface PlanCardPros {
 
 const PlanCard: FunctionComponent<PlanCardPros> = ({ icon, title, price }) => {
   return (
-    <div className="w-full border-[1px] border-gray-500/30 p-4 rounded-md flex gap-x-4 items-center">
+    <div className="w-full border-[1px] border-gray-500/30 p-4 rounded-md flex gap-x-4 items-center lg:flex-col lg:items-start lg:gap-x-0 lg:gap-y-8">
       {/* icon */}
       <div>{icon}</div>
       {/* description */}

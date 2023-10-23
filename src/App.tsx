@@ -4,6 +4,7 @@ import Nav from "./components/Nav";
 import Step1 from "./components/Step1";
 import { useAppSelector } from "./hooks";
 import Step2 from "./components/Step2";
+import Step3 from "./components/Step3";
 
 function App() {
   // const [formStem, setFormStep] = useState<number>(1);
@@ -15,6 +16,8 @@ function App() {
         return <Step1 />;
       case 2:
         return <Step2 />;
+      case 3:
+        return <Step3 />;
       default:
         break;
     }
