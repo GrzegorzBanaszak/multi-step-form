@@ -6,7 +6,7 @@ export interface FormState {
 }
 
 const initialState: FormState = {
-  currentStep: 1,
+  currentStep: 2,
 };
 
 export const formSlice = createSlice({

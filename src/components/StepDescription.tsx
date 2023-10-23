@@ -5,7 +5,7 @@ interface StepDescriptionPros {
 const StepDescription: React.FunctionComponent<StepDescriptionPros> = ({
   text,
 }) => {
-  return <p className="text-gray-400">{text}</p>;
+  return <p className="text-gray-400 ">{text}</p>;
 };
 
 export default StepDescription;

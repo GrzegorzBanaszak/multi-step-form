@@ -1,12 +1,13 @@
+import { FunctionComponent } from "react";
 import StepDescription from "./StepDescription";
 import StepHeader from "./StepHeader";
 
-const Step1 = () => {
+const Step1: FunctionComponent = () => {
   return (
-    <section className="flex flex-col gap-y-4">
-      <StepHeader title={"Select your plan"} />
+    <>
+      <StepHeader title={"Personal info"} />
       <StepDescription
-        text={"You have the option of monthly or yearly billing"}
+        text={"Please provide your name, email, address, and phone number."}
       />
       <div className="flex flex-col">
         <label>Name</label>
@@ -32,7 +33,7 @@ const Step1 = () => {
           placeholder="e.g. +1 234 567 890"
         />
       </div>
-    </section>
+    </>
   );
 };
 
