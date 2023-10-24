@@ -1,6 +1,6 @@
 // import { useState } from "react";
-import StepsList from "./components/StepsList";
-import Nav from "./components/Nav";
+import StepsList from "@/components/StepsList";
+import Nav from "@/components/Nav";
 import Step1 from "./components/Step1";
 import { useAppSelector } from "./hooks";
 import Step2 from "./components/Step2";
