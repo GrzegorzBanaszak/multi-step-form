@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import StepDescription from "./StepDescription";
 import StepHeader from "./StepHeader";
-import AddCard, { AddCardProps } from "./AddCard";
+import AddCard, { AddCardProps } from "@/components/AddCard";
 
 const addons: Array<AddCardProps> = [
   {

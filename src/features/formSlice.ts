@@ -6,7 +6,7 @@ export interface FormState {
 }
 
 const initialState: FormState = {
-  currentStep: 3,
+  currentStep: 4,
 };
 
 export const formSlice = createSlice({
@@ -14,7 +14,7 @@ export const formSlice = createSlice({
   initialState,
   reducers: {
     incrementStep: (state) => {
-      if (state.currentStep < 4) {
+      if (state.currentStep < 5) {
         state.currentStep++;
       }
     },
