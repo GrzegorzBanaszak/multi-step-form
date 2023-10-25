@@ -1,21 +1,10 @@
+import { User, UserDataError, UserSchema } from "@/utilis";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { z } from "zod";
-
-const phoneReg = new RegExp(
-  "^[+]?[(]?[0-9]{3}[)]?[-s.]?[0-9]{3}[-s.]?[0-9]{4,6}$"
-);
-
-const UserSchema = z.object({
-  username: z.string(),
-  email: z.string().email(),
-  phoneNumber: z.string().regex(phoneReg, "Invalid phone number"),
-});
-
-type User = z.infer<typeof UserSchema>;
 
 export interface FormState {
   currentStep: number;
   userData: User;
+  userDataValid: UserDataError;
 }
 
 export type UserPayload = {
@@ -30,6 +19,11 @@ const initialState: FormState = {
     email: "",
     phoneNumber: "",
   },
+  userDataValid: {
+    usernameError: false,
+    emailError: false,
+    phoneNumberError: false,
+  },
 };
 
 export const formSlice = createSlice({
@@ -37,8 +31,31 @@ export const formSlice = createSlice({
   initialState,
   reducers: {
     incrementStep: (state) => {
-      if (state.currentStep < 5) {
-        state.currentStep++;
+      if (state.currentStep === 1) {
+        //Reset state
+        state.userDataValid = {
+          usernameError: false,
+          emailError: false,
+          phoneNumberError: false,
+        };
+        const parse = UserSchema.safeParse(state.userData);
+        if (!parse.success) {
+          parse.error.issues.forEach((element) => {
+            switch (element.path[0]) {
+              case "username":
+                state.userDataValid.usernameError = true;
+                break;
+              case "email":
+                state.userDataValid.emailError = true;
+                break;
+              case "phoneNumber":
+                state.userDataValid.phoneNumberError = true;
+                break;
+              default:
+                break;
+            }
+          });
+        }
       }
     },
     decrementStep: (state) => {
