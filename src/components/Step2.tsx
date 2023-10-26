@@ -10,17 +10,17 @@ import PlanTyp from "./PlanTyp";
 const plans: Array<PlanCardPros> = [
   {
     icon: <IconArcade />,
-    title: "Arcane",
+    title: "arcane",
     price: 9,
   },
   {
     icon: <IconAdvanced />,
-    title: "Advanced",
+    title: "advanced",
     price: 12,
   },
   {
     icon: <IconPro />,
-    title: "Pro",
+    title: "pro",
     price: 15,
   },
 ];

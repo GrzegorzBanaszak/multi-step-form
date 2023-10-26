@@ -6,7 +6,7 @@ const Nav = () => {
   const dispatch = useAppDispatch();
   return (
     <div className="mt-auto px-3 lg:px-0 w-full lg:w-[550px] h-5 bg-white mx-auto py-12">
-      <div className="w-full h-full flex items-center justify-between font-semibold text-coolGray">
+      <div className="w-full h-full flex items-center justify-between font-semibold text-coolGray hover:text-marineBlue/90 duration-300 transition-all">
         {currentStep > 1 && (
           <button onClick={() => dispatch(decrementStep())}>Go Back</button>
         )}

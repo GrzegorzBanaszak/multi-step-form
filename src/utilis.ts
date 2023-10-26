@@ -7,7 +7,10 @@ const phoneReg = new RegExp(
 export const UserSchema = z.object({
   username: z.string().min(1),
   email: z.string().min(1).email(),
-  phoneNumber: z.string().min(1).regex(phoneReg, "Invalid phone number"),
+  phoneNumber: z
+    .string()
+    .min(1)
+    .refine((value) => phoneReg.test(value), "Invalid phone number"),
 });
 
 export type UserDataError = {

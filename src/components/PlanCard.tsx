@@ -1,4 +1,7 @@
+import { PlanType, selectPlan } from "@/features/formSlice";
+import { useAppSelector } from "@/hooks";
 import { FunctionComponent, ReactNode } from "react";
+import { useDispatch } from "react-redux";
 
 export interface PlanCardPros {
   icon: ReactNode;
@@ -7,14 +10,24 @@ export interface PlanCardPros {
 }
 
 const PlanCard: FunctionComponent<PlanCardPros> = ({ icon, title, price }) => {
+  const { name, type } = useAppSelector((state) => state.form.plan);
+  const dispatch = useDispatch();
   return (
-    <div className="w-full border-[1px] border-gray-500/30 p-4 rounded-md flex gap-x-4 items-center lg:flex-col lg:items-start lg:gap-x-0 lg:gap-y-8">
+    <div
+      onClick={() => dispatch(selectPlan({ name: title, price }))}
+      className={`w-full border-[1px] border-gray-500/30 p-4 rounded-md flex gap-x-4 items-center lg:flex-col lg:items-start lg:gap-x-0 lg:gap-y-8 hover:border-marineBlue duration-300 cursor-pointer ${
+        name === title && "bg-lightGray/20 border-marineBlue"
+      }`}
+    >
       {/* icon */}
       <div>{icon}</div>
       {/* description */}
       <div>
-        <div className="font-bold">{title}</div>
-        <div className="text-gray-600/40">${price}/mo</div>
+        <div className="font-bold capitalize">{title}</div>
+        <div className="text-gray-600/40">
+          ${type === PlanType.MONTHLY ? price : price * 10}/
+          {type === PlanType.MONTHLY ? "mo" : "yer"}
+        </div>
       </div>
     </div>
   );

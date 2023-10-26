@@ -1,10 +1,22 @@
 import { User, UserDataError, UserSchema } from "@/utilis";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
+export enum PlanType {
+  MONTHLY = "monthly",
+  YEARLY = "yearly",
+}
+
+type Plan = {
+  name: string;
+  price: number;
+  type: PlanType;
+};
+
 export interface FormState {
   currentStep: number;
   userData: User;
   userDataValid: UserDataError;
+  plan: Plan;
 }
 
 export type UserPayload = {
@@ -13,7 +25,7 @@ export type UserPayload = {
 };
 
 const initialState: FormState = {
-  currentStep: 1,
+  currentStep: 2,
   userData: {
     username: "",
     email: "",
@@ -23,6 +35,11 @@ const initialState: FormState = {
     usernameError: false,
     emailError: false,
     phoneNumberError: false,
+  },
+  plan: {
+    name: "arcane",
+    price: 9,
+    type: PlanType.MONTHLY,
   },
 };
 
@@ -55,7 +72,11 @@ export const formSlice = createSlice({
                 break;
             }
           });
+        } else {
+          state.currentStep++;
         }
+      } else {
+        state.currentStep++;
       }
     },
     decrementStep: (state) => {
@@ -76,10 +97,29 @@ export const formSlice = createSlice({
         state.userData.phoneNumber = action.payload.data;
       }
     },
+    selectPlan: (
+      state,
+      action: PayloadAction<{ name: string; price: number }>
+    ) => {
+      state.plan.name = action.payload.name;
+      state.plan.price = action.payload.price;
+    },
+    switchPlanType: (state) => {
+      if (state.plan.type === PlanType.MONTHLY) {
+        state.plan.type = PlanType.YEARLY;
+      } else {
+        state.plan.type = PlanType.MONTHLY;
+      }
+    },
   },
 });
 
-export const { decrementStep, incrementStep, userDataChange } =
-  formSlice.actions;
+export const {
+  decrementStep,
+  incrementStep,
+  userDataChange,
+  selectPlan,
+  switchPlanType,
+} = formSlice.actions;
 
 export default formSlice.reducer;
