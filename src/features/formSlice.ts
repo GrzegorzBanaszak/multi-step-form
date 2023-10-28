@@ -107,8 +107,10 @@ export const formSlice = createSlice({
     switchPlanType: (state) => {
       if (state.plan.type === PlanType.MONTHLY) {
         state.plan.type = PlanType.YEARLY;
+        state.plan.price = state.plan.price * 10;
       } else {
         state.plan.type = PlanType.MONTHLY;
+        state.plan.price = state.plan.price / 10;
       }
     },
   },
