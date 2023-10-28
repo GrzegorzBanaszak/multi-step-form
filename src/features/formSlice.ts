@@ -1,4 +1,4 @@
-import { User, UserDataError, UserSchema } from "@/utilis";
+import { User, UserDataError, UserSchema } from "@/lib/utilis";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export enum PlanType {

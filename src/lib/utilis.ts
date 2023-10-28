@@ -1,3 +1,5 @@
+import { clsx, ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
 import { z } from "zod";
 
 const phoneReg = new RegExp(
@@ -20,3 +22,7 @@ export type UserDataError = {
 };
 
 export type User = z.infer<typeof UserSchema>;
+
+export function cn(...inputs: ClassValue[]): string {
+  return twMerge(clsx(inputs));
+}
