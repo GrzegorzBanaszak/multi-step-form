@@ -1,26 +1,14 @@
-import { PlanType } from "@/features/formSlice";
-import { useAppSelector } from "@/hooks";
-import { cn } from "@/lib/utilis";
-import React from "react";
+import { switchPlanType } from "@/features/formSlice";
+import { useAppDispatch } from "@/hooks";
+import PlanTypeSwitch from "./PlanTypeSwitch";
 
-interface PlanTypeSelectProps extends React.ComponentProps<"div"> {}
-
-const PlanTypeSelect = ({ className, ...props }: PlanTypeSelectProps) => {
-  const { type } = useAppSelector((state) => state.form.plan);
+const PlanTypeSelect = () => {
+  const dispatch = useAppDispatch();
   return (
-    <div
-      className={cn(
-        "relative box block h-6 w-10 rounded-full bg-marineBlue cursor-pointer",
-        className
-      )}
-      {...props}
-    >
-      <div
-        className={cn(
-          "absolute left-1 top-1 flex h-4 w-4 items-center justify-center rounded-full bg-white  transition",
-          { "translate-x-full": type === PlanType.YEARLY }
-        )}
-      ></div>
+    <div className="flex justify-center gap-x-5 bg-magnolia py-4 mt-4 rounded-md">
+      <div className="text-marineBlue font-bold">Monthly</div>
+      <PlanTypeSwitch onClick={() => dispatch(switchPlanType())} />
+      <div className="font-bold text-coolGray">Yearly</div>
     </div>
   );
 };

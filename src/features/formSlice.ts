@@ -1,28 +1,8 @@
-import { User, UserDataError, UserSchema } from "@/lib/utilis";
+import { FormState } from "@/interfaces/FormState";
+import { UserSchema } from "@/lib/utilis";
+import { PlanType } from "@/types/PlanType";
+import { UserPayload } from "@/types/UserPayload";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-
-export enum PlanType {
-  MONTHLY = "monthly",
-  YEARLY = "yearly",
-}
-
-type Plan = {
-  name: string;
-  price: number;
-  type: PlanType;
-};
-
-export interface FormState {
-  currentStep: number;
-  userData: User;
-  userDataValid: UserDataError;
-  plan: Plan;
-}
-
-export type UserPayload = {
-  type: string;
-  data: string;
-};
 
 const initialState: FormState = {
   currentStep: 2,

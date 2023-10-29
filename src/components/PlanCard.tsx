@@ -1,5 +1,6 @@
-import { PlanType, selectPlan } from "@/features/formSlice";
+import { selectPlan } from "@/features/formSlice";
 import { useAppSelector } from "@/hooks";
+import { PlanType } from "@/types/PlanType";
 import { FunctionComponent, ReactNode } from "react";
 import { useDispatch } from "react-redux";
 
