@@ -1,11 +1,12 @@
 import { FormState } from "@/interfaces/FormState";
 import { UserSchema } from "@/lib/utilis";
+import { Addon } from "@/types/Addon";
 import { PlanType } from "@/types/PlanType";
 import { UserPayload } from "@/types/UserPayload";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 const initialState: FormState = {
-  currentStep: 2,
+  currentStep: 3,
   userData: {
     username: "",
     email: "",
@@ -21,6 +22,7 @@ const initialState: FormState = {
     price: 9,
     type: PlanType.MONTHLY,
   },
+  addons: [],
 };
 
 export const formSlice = createSlice({
@@ -88,9 +90,26 @@ export const formSlice = createSlice({
       if (state.plan.type === PlanType.MONTHLY) {
         state.plan.type = PlanType.YEARLY;
         state.plan.price = state.plan.price * 10;
+        state.addons.forEach((ad) => {
+          ad.price = ad.price * 10;
+        });
       } else {
         state.plan.type = PlanType.MONTHLY;
         state.plan.price = state.plan.price / 10;
+        state.addons.forEach((ad) => {
+          ad.price = ad.price / 10;
+        });
+      }
+    },
+    toggleAddon: (state, action: PayloadAction<Addon>) => {
+      const ad = state.addons.find((a) => a.title === action.payload.title);
+
+      if (!ad) {
+        state.addons.push(action.payload);
+      } else {
+        state.addons = state.addons.filter(
+          (a) => a.title !== action.payload.title
+        );
       }
     },
   },
@@ -102,6 +121,7 @@ export const {
   userDataChange,
   selectPlan,
   switchPlanType,
+  toggleAddon,
 } = formSlice.actions;
 
 export default formSlice.reducer;

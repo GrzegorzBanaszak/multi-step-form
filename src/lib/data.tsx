@@ -1,8 +1,8 @@
-import { AddCardProps } from "@/components/AddCard";
 import IconAdvanced from "../icons/IconAdvanced";
 import IconArcade from "../icons/IconArcade";
 import IconPro from "../icons/IconPro";
 import { PlanCardPros } from "@/components/PlanCard";
+import { Addon } from "@/types/Addon";
 
 export const plans: Array<PlanCardPros> = [
   {
@@ -22,7 +22,7 @@ export const plans: Array<PlanCardPros> = [
   },
 ];
 
-export const addons: Array<AddCardProps> = [
+export const addons: Array<Addon> = [
   {
     title: "Online service",
     description: "Access to multiplayer",

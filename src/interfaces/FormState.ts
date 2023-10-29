@@ -1,4 +1,5 @@
 import { User, UserDataError } from "@/lib/utilis";
+import { Addon } from "@/types/Addon";
 import { Plan } from "@/types/Plan";
 
 export interface FormState {
@@ -6,4 +7,5 @@ export interface FormState {
   userData: User;
   userDataValid: UserDataError;
   plan: Plan;
+  addons: Array<Addon>;
 }

@@ -2,7 +2,7 @@ import React from "react";
 
 export type AddationalCardProps = {
   serviceName: string;
-  price: string;
+  price: number;
 };
 
 const AdditionalCard: React.FC<AddationalCardProps> = ({
