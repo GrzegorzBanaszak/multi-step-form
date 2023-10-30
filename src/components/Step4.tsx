@@ -1,8 +1,24 @@
 import { FunctionComponent } from "react";
 import StepHeader from "@/components/StepHeader";
 import StepDescription from "@/components/StepDescription";
+import { useAppSelector } from "@/hooks";
+import SummaryCard from "./SummaryCard";
+import { PlanType } from "@/types/PlanType";
 
 const Step4: FunctionComponent = () => {
+  const { addons, plan } = useAppSelector((state) => state.form);
+
+  const getTotal = (): number => {
+    let total: number = 0;
+    total += plan.price;
+    if (addons.length > 0) {
+      addons.forEach((ad) => {
+        total += ad.price;
+      });
+    }
+
+    return total;
+  };
   return (
     <>
       <StepHeader title={"Finishing up"} />
@@ -12,23 +28,28 @@ const Step4: FunctionComponent = () => {
       <div className="bg-magnolia px-4 py-6 rounded-lg flex flex-col gap-y-3">
         <div className="flex justify-between items-center border-b-2 border-b-lightGray pb-3">
           <div>
-            <div className="text-marineBlue font-bold">Arcane (Monthly)</div>
+            <div className="text-marineBlue font-bold capitalize">
+              {plan.name} ({plan.type})
+            </div>
             <div className="text-coolGray underline">Change</div>
           </div>
-          <div className="text-marineBlue font-bold">$9/mon</div>
+          <div className="text-marineBlue font-bold">
+            ${plan.price}/{plan.type === PlanType.MONTHLY ? "mon" : "yer"}
+          </div>
         </div>
-        <div className="flex justify-between items-center">
-          <div className="text-coolGray ">Online service</div>
-          <div className="text-marineBlue ">+$1/mon</div>
-        </div>
-        <div className="flex justify-between items-center">
-          <div className="text-coolGray ">Larger storage</div>
-          <div className="text-marineBlue ">+$2/mon</div>
-        </div>
+        {addons.map((ad, index) => {
+          return (
+            <SummaryCard key={index} serviceName={ad.title} price={ad.price} />
+          );
+        })}
       </div>
       <div className="flex justify-between items-center py-4">
-        <div className="text-coolGray ">Total (per month)</div>
-        <div className="text-purplishBlue font-bold text-lg">+$2/mon</div>
+        <div className="text-coolGray ">
+          Total (per <span>{plan.type}</span>)
+        </div>
+        <div className="text-purplishBlue font-bold text-lg">
+          +${getTotal()}/{plan.type === PlanType.MONTHLY ? "mon" : "yer"}
+        </div>
       </div>
     </>
   );
