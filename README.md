@@ -1,5 +1,7 @@
 # Frontend Mentor - Multi-step form solution
 
+![Image preview](./design/desktop-preview.jpg)
+
 ## The challenge
 
 Users should be able to:
@@ -20,3 +22,7 @@ Screen
 - React
 - Tailwind
 - Typescript
+
+### Links
+
+- Live Site URL: [Live](https://grzegorzbanaszak.github.io/multi-step-form/)
