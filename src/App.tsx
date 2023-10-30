@@ -1,10 +1,12 @@
 // import { useState } from "react";
-import StepsList from "./components/StepsList";
-import Nav from "./components/Nav";
-import Step1 from "./components/Step1";
-import { useAppSelector } from "./hooks";
-import Step2 from "./components/Step2";
-import Step3 from "./components/Step3";
+import StepsList from "@/components/StepsList";
+import Nav from "@/components/Nav";
+import Step1 from "@/components/Step1";
+import { useAppSelector } from "@/hooks";
+import Step2 from "@/components/Step2";
+import Step3 from "@/components/Step3";
+import Step4 from "@/components/Step4";
+import Step5 from "@/components/Step5";
 
 function App() {
   // const [formStem, setFormStep] = useState<number>(1);
@@ -18,6 +20,10 @@ function App() {
         return <Step2 />;
       case 3:
         return <Step3 />;
+      case 4:
+        return <Step4 />;
+      case 5:
+        return <Step5 />;
       default:
         break;
     }
@@ -34,11 +40,11 @@ function App() {
           </div>
           <div className="w-full flex flex-col h-full lg:h-auto">
             <div className="w-[70wv] mx-4 py-6 px-4 rounded-md bg-white relative -top-[60px] lg:top-0 lg:mx-0 lg:px-20 lg:flex-1">
-              <div className="flex flex-col gap-y-4 lg:w-[550px]">
+              <div className="flex flex-col gap-y-4 lg:w-[550px] lg:h-full">
                 {renderStep()}
               </div>
             </div>
-            <Nav />
+            {currentStep < 5 && <Nav />}
           </div>
         </div>
       </div>
