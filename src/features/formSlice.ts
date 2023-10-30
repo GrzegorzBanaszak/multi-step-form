@@ -6,7 +6,7 @@ import { UserPayload } from "@/types/UserPayload";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 const initialState: FormState = {
-  currentStep: 3,
+  currentStep: 1,
   userData: {
     username: "",
     email: "",
