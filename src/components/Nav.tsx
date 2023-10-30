@@ -23,10 +23,10 @@ const Nav = () => {
         )}
 
         <NavButton
-          className="bg-purple-950 text-white hover:bg-marineBlue/90"
+          className="bg-purple-950 text-white hover:bg-purplishBlue"
           onClick={() => dispatch(incrementStep())}
         >
-          Next Step
+          {currentStep < 4 ? "Next Step" : "Confirm"}
         </NavButton>
       </div>
     </div>

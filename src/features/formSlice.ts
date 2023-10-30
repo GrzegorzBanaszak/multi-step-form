@@ -66,6 +66,9 @@ export const formSlice = createSlice({
         state.currentStep--;
       }
     },
+    changeCurrentStep: (state, action: PayloadAction<number>) => {
+      state.currentStep = action.payload;
+    },
     userDataChange: (state, action: PayloadAction<UserPayload>) => {
       if (action.payload.type === "username") {
         state.userData.username = action.payload.data;
@@ -122,6 +125,7 @@ export const {
   selectPlan,
   switchPlanType,
   toggleAddon,
+  changeCurrentStep,
 } = formSlice.actions;
 
 export default formSlice.reducer;

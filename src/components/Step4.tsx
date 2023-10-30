@@ -1,13 +1,14 @@
 import { FunctionComponent } from "react";
 import StepHeader from "@/components/StepHeader";
 import StepDescription from "@/components/StepDescription";
-import { useAppSelector } from "@/hooks";
+import { useAppDispatch, useAppSelector } from "@/hooks";
 import SummaryCard from "./SummaryCard";
 import { PlanType } from "@/types/PlanType";
+import { changeCurrentStep } from "@/features/formSlice";
 
 const Step4: FunctionComponent = () => {
   const { addons, plan } = useAppSelector((state) => state.form);
-
+  const dispatch = useAppDispatch();
   const getTotal = (): number => {
     let total: number = 0;
     total += plan.price;
@@ -31,7 +32,12 @@ const Step4: FunctionComponent = () => {
             <div className="text-marineBlue font-bold capitalize">
               {plan.name} ({plan.type})
             </div>
-            <div className="text-coolGray underline">Change</div>
+            <div
+              className="text-coolGray underline cursor-pointer hover:text-purplishBlue duration-150"
+              onClick={() => dispatch(changeCurrentStep(2))}
+            >
+              Change
+            </div>
           </div>
           <div className="text-marineBlue font-bold">
             ${plan.price}/{plan.type === PlanType.MONTHLY ? "mon" : "yer"}
